@@ -1,138 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Responsive Timeline</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    .timeline {
-      display: flex;
-      justify-content: center; /* Centering the timeline in the container */
-      position: relative;
-      padding: 20px;
-      width: 100%;
-    }
-    
-    .timeline-line {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      width: 2px;
-      background: #000;
-      transform: translateX(-50%);
-      z-index: 1;
-    }
-    
-    .timeline-column {
-      width: 45%;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      padding: 0 20px; /* Padding to create space for the central line */
-    }
-    
-    .timeline-item {
-      position: relative;
-      padding: 10px;
-      margin-bottom: 40px; /* Space between items */
-    }
-    
-    .circle {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #000;
-      transform: translateY(-50%);
-      z-index: 2;
-    }
-    
-    .timeline-item:nth-child(odd) .circle {
-      left: -30px; /* Adjust left position for the first column items */
-    }
-    
-    .timeline-item:nth-child(even) .circle {
-      right: -30px; /* Adjust right position for the second column items */
-    }
-    
-    h4 {
-      margin: 0;
-      font-size: 16px;
-      font-weight: bold;
-    }
-    
-    p {
-      margin: 0;
-      font-size: 14px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Quiz</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="timeline">
-    <div class="timeline-line"></div>
-    
-    <div class="timeline-column">
-      <div class="timeline-item">
-        <div class="circle"></div>
-        <h4>1. Lorem ipsum dolor sit</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Reprehenderit quae, eveniet doloribus id animi dignissimos quos beatae praesentium. Quae recidienda ea nihil ipsum eligendi, libero porro facilis dolore deserunt tenetur.</p>
-      </div>
-      <div class="timeline-item">
-        <div class="circle"></div>
-        <h4>2. Lorem ipsum dolor sit</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Reprehenderit quae, eveniet doloribus id animi dignissimos quos beatae praesentium. Quae recidienda ea nihil ipsum eligendi, libero porro facilis dolore deserunt tenetur.</p>
-      </div>
-      <div class="timeline-item">
-        <div class="circle"></div>
-        <h4>3. Lorem ipsum dolor sit</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Reprehenderit quae, eveniet doloribus id animi dignissimos quos beatae praesentium. Quae recidienda ea nihil ipsum eligendi, libero porro facilis dolore deserunt tenetur.</p>
-      </div>
-      <div class="timeline-item">
-        <div class="circle"></div>
-        <h4>4. Lorem ipsum dolor sit</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Reprehenderit quae, eveniet doloribus id animi dignissimos quos beatae praesentium. Quae recidienda ea nihil ipsum eligendi, libero porro facilis dolore deserunt tenetur.</p>
-      </div>
-      <div class="timeline-item">
-        <div class="circle"></div>
-        <h4>5. Lorem ipsum dolor sit</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Reprehenderit quae, eveniet doloribus id animi dignissimos quos beatae praesentium. Quae recidienda ea nihil ipsum eligendi, libero porro facilis dolore deserunt tenetur.</p>
-      </div>
+    <div id="quiz-container">
+        <h2 id="question"></h2>
+        <div id="options"></div>
+        <button onclick="nextQuestion()">Next</button>
     </div>
-
-    <div class="timeline-column">
-      <div class="timeline-item">
-        <div class="circle"></div>
-        <h4>6. Lorem ipsum dolor sit</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Reprehenderit quae, eveniet doloribus id animi dignissimos quos beatae praesentium. Quae recidienda ea nihil ipsum eligendi, libero porro facilis dolore deserunt tenetur.</p>
-      </div>
-      <div class="timeline-item">
-        <div class="circle"></div>
-        <h4>7. Lorem ipsum dolor sit</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Reprehenderit quae, eveniet doloribus id animi dignissimos quos beatae praesentium. Quae recidienda ea nihil ipsum eligendi, libero porro facilis dolore deserunt tenetur.</p>
-      </div>
-      <div class="timeline-item">
-        <div class="circle"></div>
-        <h4>8. Lorem ipsum dolor sit</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Reprehenderit quae, eveniet doloribus id animi dignissimos quos beatae praesentium. Quae recidienda ea nihil ipsum eligendi, libero porro facilis dolore deserunt tenetur.</p>
-      </div>
-      <div class="timeline-item">
-        <div class="circle"></div>
-        <h4>9. Lorem ipsum dolor sit</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Reprehenderit quae, eveniet doloribus id animi dignissimos quos beatae praesentium. Quae recidienda ea nihil ipsum eligendi, libero porro facilis dolore deserunt tenetur.</p>
-      </div>
-      <div class="timeline-item">
-        <div class="circle"></div>
-        <h4>10. Lorem ipsum dolor sit</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Reprehenderit quae, eveniet doloribus id animi dignissimos quos beatae praesentium. Quae recidienda ea nihil ipsum eligendi, libero porro facilis dolore deserunt tenetur.</p>
-      </div>
+    <div id="result" style="display: none;">
+        <h2>Your Score: <span id="score"></span></h2>
+        <button onclick="startQuiz()">Retake Quiz</button>
     </div>
-  </div>
+    <script src="script.js"></script>
 </body>
 </html>
